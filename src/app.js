@@ -1,7 +1,7 @@
 const express = require('express'),
     app = express(),
     parser = require('rss-parser'),
-    PodcastModel = require('./models/Podcast.model'),
+    PodcastModel = require('./models/podcast.model'),
     rssUrl = 'http://feeds.soundcloud.com/users/soundcloud:users:264614350/sounds.rss';
 
 app.use((req, res, next) => {
@@ -28,7 +28,8 @@ app.get('/podcasts/', (req, res) => {
 
             items.push(podcast);
         }
-        res.json(items);
+        res.json(items).status(200);
+
     });
 });
 

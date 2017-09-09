@@ -1,14 +1,24 @@
 {
-    "name": "codefiction-tech-podcast-api",
-    "description": "JSON API for codefiction podcasts",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "aws-serverless-express": "latest",
-        "express": "latest",
-        "rss-parser": "^2.10.1"
-    }
+  "name": "codefiction-tech-podcast-api",
+  "description": "JSON API for codefiction podcasts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "aws-serverless-express": "latest",
+    "express": "latest",
+    "rss-parser": "^2.10.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "jasmine": "^2.8.0",
+    "karma": "^1.7.1",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0",
+    "supertest": "^3.0.0"
+  }
 }
