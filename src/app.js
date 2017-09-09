@@ -1,7 +1,8 @@
 const express = require('express'),
     app = express(),
     parser = require('rss-parser'),
-    PodcastModel = require('./models/Podcast.model'),
+    PodcastController = require('./controllers/Podcast.controller'),
+    podcastController = new PodcastController(app, parser),
     rssUrl = 'http://feeds.soundcloud.com/users/soundcloud:users:264614350/sounds.rss';
 
 app.use((req, res, next) => {
@@ -11,24 +12,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/podcasts/', (req, res) => {
-    parser.parseURL(rssUrl, (err, rss) => {
-        let items = [],
-            list = rss.feed.entries;
-
-        for (let i = 0; i < list.length; i++) {
-            let listItem = list[i];
-            let podcast = new PodcastModel(
-                listItem.title,
-                listItem.link,
-                listItem.itunes.duration,
-                listItem.itunes.image,
-                listItem.pubDate,
-                listItem.content
-            );
-
-            items.push(podcast);
-        }
-        res.json(items);
+    podcastController.getPodcasts().then((items) => {
+        res.json(items).status(200);
     });
 });
 
