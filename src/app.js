@@ -29,7 +29,6 @@ app.get('/podcasts/', (req, res) => {
             items.push(podcast);
         }
         res.json(items).status(200);
-
     });
 });
 
